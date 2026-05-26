@@ -4,11 +4,10 @@ from pydantic import BaseModel
 import pandas as pd
 import joblib
 from ml.data import process_data
-
+import os
 app = FastAPI()
 
 # Load model artifacts
-import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model = joblib.load(os.path.join(BASE_DIR, "..", "model", "model.pkl"))
 encoder = joblib.load(os.path.join(BASE_DIR, "..", "model", "encoder.pkl"))

@@ -1,0 +1,9 @@
+education=Bachelors
+precision=0.74
+recall=0.63
+fbeta=0.68
+
+education=HS-grad
+precision=0.71
+recall=0.60
+fbeta=0.65

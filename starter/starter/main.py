@@ -8,9 +8,11 @@ from ml.data import process_data
 app = FastAPI()
 
 # Load model artifacts
-model = joblib.load("../model/model.pkl")
-encoder = joblib.load("../model/encoder.pkl")
-lb = joblib.load("../model/lb.pkl")
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model = joblib.load(os.path.join(BASE_DIR, "..", "model", "model.pkl"))
+encoder = joblib.load(os.path.join(BASE_DIR, "..", "model", "encoder.pkl"))
+lb = joblib.load(os.path.join(BASE_DIR, "..", "model", "lb.pkl"))
 
 # Root endpoint
 

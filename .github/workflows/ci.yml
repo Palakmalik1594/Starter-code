@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - main
-      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -22,11 +21,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install fastapi uvicorn pytest flake8 httpx
+          pip install -r starter/requirements.txt
+          pip install pytest flake8 fastapi uvicorn httpx
 
       - name: Run flake8
-        run: flake8 .
+        run: flake8 starter/starter
 
       - name: Run tests
-        run: pytest
+        run: |
+          cd starter/starter
+          pytest

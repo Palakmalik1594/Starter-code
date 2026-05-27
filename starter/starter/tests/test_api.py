@@ -73,3 +73,39 @@ def test_predict_high_income():
 
     assert response.status_code == 200
     assert response.json()["prediction"] in ["<=50K", ">50K"]
+def test_model_prediction_type():
+    response = client.post(
+        "/predict",
+        json={
+            "age": 37,
+            "workclass": "Private",
+            "fnlgt": 284582,
+            "education": "Bachelors",
+            "education_num": 13,
+            "marital_status": "Married-civ-spouse",
+            "occupation": "Prof-specialty",
+            "relationship": "Husband",
+            "race": "White",
+            "sex": "Male",
+            "capital_gain": 0,
+            "capital_loss": 0,
+            "hours_per_week": 40,
+            "native_country": "United-States"
+        }
+    )
+
+    assert type(response.json()["prediction"]) == str
+
+
+def test_status_code():
+    response = client.get("/")
+    assert response.status_code == 200
+
+
+def test_invalid_input():
+    response = client.post(
+        "/predict",
+        json={}
+    )
+
+    assert response.status_code == 422
